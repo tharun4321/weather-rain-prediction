@@ -5,13 +5,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 # --------- API KEY (use secrets/env if possible) ---------
-API_KEY = st.secrets["OPENWEATHER_API_KEY"]
+API_KEY = st.secrets.get("OPENWEATHER_API_KEY", "")
+
 
 
 
 # --------- MODEL SETUP ---------
 @st.cache_data
-def load_data(csv_path="../data/weather_data.csv"):
+
+def load_data(csv_path="data/weather_data.csv"):
     data = pd.read_csv(csv_path)
     return data
 
